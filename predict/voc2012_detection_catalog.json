@@ -1,0 +1,72 @@
+{
+    "BOX2D": {
+        "categories": [
+            {
+                "name": "horse"
+            },
+            {
+                "name": "person"
+            },
+            {
+                "name": "bottle"
+            },
+            {
+                "name": "dog"
+            },
+            {
+                "name": "tvmonitor"
+            },
+            {
+                "name": "car"
+            },
+            {
+                "name": "aeroplane"
+            },
+            {
+                "name": "bicycle"
+            },
+            {
+                "name": "boat"
+            },
+            {
+                "name": "chair"
+            },
+            {
+                "name": "diningtable"
+            },
+            {
+                "name": "pottedplant"
+            },
+            {
+                "name": "train"
+            },
+            {
+                "name": "cat"
+            },
+            {
+                "name": "sofa"
+            },
+            {
+                "name": "bird"
+            },
+            {
+                "name": "sheep"
+            },
+            {
+                "name": "motorbike"
+            },
+            {
+                "name": "bus"
+            },
+            {
+                "name": "cow"
+            }
+        ],
+        "attributes": [
+            {
+                "name": "confidence",
+                "type": "integer"
+            }
+        ]
+    }
+}
