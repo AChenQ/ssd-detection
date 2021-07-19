@@ -52,6 +52,8 @@ class Predict:
 
         logging.info("===============start init ssd===============")
         ssd_path = os.path.join(self.path, "weights/ssd300_VOC_120000.pth")
+        if not os.path.exists(os.path.join(self.path, "weights")):
+            os.mkdir(os.path.join(self.path, "weights"))
         if not os.path.exists(ssd_path):
             download(
                 "https://algorithm-graviti.oss-cn-shanghai.aliyuncs.com/tmp/ssd300_VOC_120000.pth",
