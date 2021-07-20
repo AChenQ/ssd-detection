@@ -42,7 +42,7 @@ def download(url, file_path):
                     f.flush()
 
 
-class Predict:
+class Predictor:
     def __init__(self):
         """
         initializer
@@ -69,7 +69,7 @@ class Predict:
         self.net = SSD()
         self.net.load_state_dict(new_state_dict)
 
-    def do_task(self, img_data: bytes) -> dict:
+    def predict(self, img_data: bytes) -> dict:
         """
         Do the detection job
         :param img_data: the binary data of one image file
