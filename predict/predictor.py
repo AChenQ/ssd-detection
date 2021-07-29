@@ -7,12 +7,13 @@ import numpy as np
 import requests
 import torch
 import torch.nn as nn
+from tensorbay.label import Label, LabeledBox2D
 from torch.autograd import Variable
 from tqdm import tqdm
 
+from .Config import class_num
 from .detection import Detect
 from .ssd_net_vgg import SSD
-from .Config import class_num
 from .utils import default_prior_box
 from .voc0712 import VOC_CLASSES
 
@@ -104,27 +105,26 @@ class Predictor:
         labels = VOC_CLASSES
 
         scale = torch.Tensor(image.shape[1::-1]).repeat(2)
-        data = []
+        label = Label()
+        label.box2d = []
         for i in range(detections.size(1)):
             j = 0
             while detections[0, i, j, 0] >= 0.6:
                 score = detections[0, i, j, 0]
                 category = labels[i]
                 pt = (detections[0, i, j, 1:] * scale).cpu().numpy()
-                data.append(
-                    {
-                        "category": category,
-                        "attributes": {"confidence": float(score.cpu().numpy())},
-                        "box2d": {
-                            "xmin": float(pt[0]),
-                            "ymin": float(pt[1]),
-                            "xmax": float(pt[2]),
-                            "ymax": float(pt[3]),
-                        },
-                    }
+                label.box2d.append(
+                    LabeledBox2D(
+                        float(pt[0]),
+                        float(pt[1]),
+                        float(pt[2]),
+                        float(pt[3]),
+                        category=category,
+                        attributes={"confidence": float(score.cpu().numpy())},
+                    )
                 )
                 j += 1
-        return data
+        return label.dumps()
 
     def teardown(self) -> None:
         return
