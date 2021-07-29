@@ -109,7 +109,7 @@ class Predictor:
             j = 0
             while detections[0, i, j, 0] >= 0.6:
                 score = detections[0, i, j, 0]
-                category = labels[i - 1]
+                category = labels[i]
                 pt = (detections[0, i, j, 1:] * scale).cpu().numpy()
                 data.append(
                     {
