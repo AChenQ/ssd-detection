@@ -109,7 +109,7 @@ class Predictor:
         label.box2d = []
         for i in range(detections.size(1)):
             j = 0
-            while detections[0, i, j, 0] >= 0.6:
+            while detections[0, i, j, 0] >= 0.01:
                 score = detections[0, i, j, 0]
                 category = labels[i]
                 pt = (detections[0, i, j, 1:] * scale).cpu().numpy()
